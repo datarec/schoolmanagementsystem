@@ -15,11 +15,11 @@ void addStudent() {
     char studentFname;
     char studentLname;
     char studentDob;
+    char submitData;
   };
   
   struct student studentInfo; 
   FILE* students;
-  students = fopen("students.txt", "w");
   printf("\nPlease enter the students information.\n\n");
   printf("First name (Name at birth) ");
   scanf("%s", &studentInfo.studentFname);
@@ -27,6 +27,12 @@ void addStudent() {
   scanf("%s", &studentInfo.studentLname);
   printf("Student DOB (dd/mm/yyyy) ");
   scanf("%s", &studentInfo.studentDob);
+  printf("\n\nWould you like to submit this? (y/n) ");
+  scanf("%c", &studentInfo.submitData);
+  if (studentInfo.submitData == 'y') {
+    students = fopen("students.txt", "a");
+    fprintf("%c", studentInfo.studentFname);
+  } 
 }
 
 
