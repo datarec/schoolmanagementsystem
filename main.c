@@ -1,38 +1,32 @@
 // school management system. 
 
 #include <stdio.h>
-
- struct student {
-    char studentFname;
-    char studentLname;
-
-  };
-
+#include <stdlib.h>
 
 void addStudent() {
-  // add students function.
-  struct student {
-    char studentFname;
-    char studentLname;
-    char studentDob;
-    char submitData;
-  };
-  
-  struct student studentInfo; 
-  FILE* students;
+  char studentFname;
+  char studentLname;
+  char studentDob;
+  char submitData;
   printf("\nPlease enter the students information.\n\n");
   printf("First name (Name at birth) ");
-  scanf("%s", &studentInfo.studentFname);
+  scanf("%s", &studentFname);
   printf("Student last name ");
-  scanf("%s", &studentInfo.studentLname);
+  scanf("%s", &studentLname);
   printf("Student DOB (dd/mm/yyyy) ");
-  scanf("%s", &studentInfo.studentDob);
-  printf("\n\nWould you like to submit this? (y/n) ");
-  scanf("%c", &studentInfo.submitData);
-  if (studentInfo.submitData == 'y') {
-    students = fopen("students.txt", "a");
-    fprintf("%c", studentInfo.studentFname);
+  scanf("%s", &studentDob);
+  printf("\nWould you like to submit this? (y/n) ");
+  scanf(" %c", &submitData);
+  if (submitData == 'y') {
+    printf("\nStudents name: %s", studentFname);
+    FILE* students;
+    students = fopen("studentDB.txt", "a");
+    fprintf(students, studentFname);
+    fclose(students);
   } 
+  else {
+    exit(1);
+  }
 }
 
 
