@@ -78,6 +78,3 @@ int main() {
 }
 
 
-// Implement error checking for all user input data options for students 
-
-
