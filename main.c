@@ -32,7 +32,8 @@ void addStudent() {
     printf("\n[!] The last name of student %s exceeds the maximum character limit of 20.", studentFname);
     exit(1);
   }
-  else if (dobLen > 10) {
+  // ADD CHECKS TWO CONDITIONS.
+  else if (dobLen > 10 || dobLen < 10) {
     printf("\n[!] Please ensure the date format is correct.");
     exit(1);
   }
@@ -76,5 +77,4 @@ void smsMain() {
 int main() {
   smsMain();
 }
-
 
