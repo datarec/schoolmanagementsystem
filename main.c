@@ -6,6 +6,9 @@
 #include <string.h>
 
 
+int studentLineIterations = 0;
+
+
 void addStudent() {
   char studentFname[20];
   char studentLname[20];
@@ -32,7 +35,6 @@ void addStudent() {
     printf("\n[!] The last name of student %s exceeds the maximum character limit of 20.", studentFname);
     exit(1);
   }
-  // ADD CHECKS TWO CONDITIONS.
   else if (dobLen > 10 || dobLen < 10) {
     printf("\n[!] Please ensure the date format is correct.");
     exit(1);
@@ -43,7 +45,7 @@ void addStudent() {
     fprintf(students, "\n\nFIRST NAME: %s", studentFname);
     fprintf(students, "\nLAST NAME: %s", studentLname);
     fprintf(students, "\nD.O.B: %s", studentDob);
-    printf("\n[!] DATA SUBMISSION SUCCESSFUL! ");
+    printf("\n[!] Student successfully added! ");
     fclose(students);
   }
   else {
@@ -53,14 +55,33 @@ void addStudent() {
 
 
 void searchStudent() {
-  printf("Search student.");
+  int searchOption;
+  printf("Choose from the following; \n\n");
+  printf("1) Search by Rolecall.");
+  printf("\n2) Search by First Name");
+  scanf("%d", &searchOption);
+
 }
+
+
+void getStudentCount() {
+  FILE* gsCount;
+  gsCount = fopen("studentDB.txt", "r");
+  char gsCountData[50];
+  while (fgets(gsCountData, 50, gsCount)) {
+    studentLineIterations++;
+    printf("%s", gsCountData);
+  }
+}
+
 
 
 void smsMain() {
   int smsMainOption;
-  printf("Welcome to the school's Student Management System.");
-  printf("\nStudents enrolled: 0");
+  getStudentCount();
+  int studentCount = (studentLineIterations - 1) / 4;
+  printf("\nWelcome to the school's Student Management System.");
+  printf("\nStudents enrolled: %d", studentCount);
   printf("\n\n1) Add a student");
   printf("\n2) Search student (ADD MORE OPTIONS. using role-call number)");
   printf("\n\n>> ");
@@ -77,4 +98,5 @@ void smsMain() {
 int main() {
   smsMain();
 }
+
 
