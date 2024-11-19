@@ -6,7 +6,7 @@
 #include <string.h>
 
 
-int studentLineIterations = 0;
+int studentLineIterations = 0; 
 
 
 void addStudent() {
@@ -58,7 +58,8 @@ void searchStudent() {
   int searchOption;
   printf("Choose from the following; \n\n");
   printf("1) Search by Rolecall.");
-  printf("\n2) Search by First Name");
+  printf("\n2) Search by First Name\n");
+  printf("\nSearch Option Selector (1,2) ");
   scanf("%d", &searchOption);
 
 }
