@@ -4,9 +4,26 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <time.h>
 
 
 int studentLineIterations = 0; 
+
+void checkRcNum(int rcGen) {
+  // add a search and use strcmp to cmpare with the generated one to 
+  // chgeck if it's been used already. 
+  printf("\nwe have rcGen: %d", rcGen);
+}
+
+void generateRc() {
+  int rC;
+	srand(time(0));
+	for (rC= 0; rC < 1; rC++) {
+		long int rcGen = (rand() % 1000000000) + 1;
+    printf("\nIn generate: %d", rcGen);
+    checkRcNum(rcGen);
+  }
+} 
 
 
 void addStudent() {
@@ -23,6 +40,7 @@ void addStudent() {
   scanf("%s", &studentDob);
   printf("\nWould you like to submit this? (y/n) ");
   scanf(" %c", &submitData);
+  generateRc();
   int nameLen = strlen(studentFname);
   int lnameLen = strlen(studentLname);
   int dobLen = strlen(studentDob);
@@ -61,7 +79,9 @@ void searchStudent() {
   printf("\n2) Search by First Name\n");
   printf("\nSearch Option Selector (1,2) ");
   scanf("%d", &searchOption);
-
+  if (searchOption == 1) {
+    printf("hio");
+  }
 }
 
 
@@ -71,7 +91,6 @@ void getStudentCount() {
   char gsCountData[50];
   while (fgets(gsCountData, 50, gsCount)) {
     studentLineIterations++;
-    printf("%s", gsCountData);
   }
 }
 
@@ -81,7 +100,7 @@ void smsMain() {
   int smsMainOption;
   getStudentCount();
   int studentCount = (studentLineIterations - 1) / 4;
-  printf("\nWelcome to the school's Student Management System.");
+  printf("\nSchool Student Management System (SSMS)");
   printf("\nStudents enrolled: %d", studentCount);
   printf("\n\n1) Add a student");
   printf("\n2) Search student (ADD MORE OPTIONS. using role-call number)");
