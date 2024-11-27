@@ -129,3 +129,6 @@ int main() {
 }
 
 
+// I need to make it so it compares the variable from file to ensure that the ROLECALL
+// Number isnt being reused as all students are required to have uniquely assigned Rolecall numbers. 
+// fix other stuff too .
