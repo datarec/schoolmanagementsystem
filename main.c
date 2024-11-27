@@ -10,9 +10,18 @@
 int studentLineIterations = 0; 
 
 void checkRcNum(int rcGen) {
-  // add a search and use strcmp to cmpare with the generated one to 
-  // chgeck if it's been used already. 
-  printf("\nwe have rcGen: %d", rcGen);
+  // add a search and use strcmp to compare with the generated one to 
+  // chgeck if it's been used already.
+  FILE* rcFile;  
+  printf("\nIn checkRcNum");
+  rcFile = fopen("studentrcs.txt", "a");
+  char rcFileRead[10];
+  char rcToStr = 
+  while (fgets(rcFileRead, 10, rcFile)) {
+    int rcCheck = strcmp(rcFileRead, atoi(rcGen));
+    printf("\nDATA: %d", rcCheck);
+
+  }
 }
 
 void generateRc() {
