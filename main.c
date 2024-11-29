@@ -8,19 +8,24 @@
 
 
 int studentLineIterations = 0; 
+int test = 29501; 
 
 void checkRcNum(int rcGen) {
   // add a search and use strcmp to compare with the generated one to 
   // chgeck if it's been used already.
-  FILE* rcFile;  
-  printf("\nIn checkRcNum");
-  rcFile = fopen("studentrcs.txt", "a");
-  char rcFileRead[10];
-  char rcToStr = 
-  while (fgets(rcFileRead, 10, rcFile)) {
-    int rcCheck = strcmp(rcFileRead, atoi(rcGen));
-    printf("\nDATA: %d", rcCheck);
-
+  FILE* rcFileA;
+  FILE* rcFileR;  
+  rcFileA = fopen("studentrcs.txt", "a");
+  rcFileR = fopen("studentrcs.txt", "r");
+  char rcFileRead[20];
+  char rcGenStr[10];
+  sprintf(rcGenStr, "%d", test); // temp. REPLACE WITH RCGEN VAR.  
+  fprintf(rcFileA, "\n%s", rcGenStr);
+  while (fgets(rcFileRead, 20, rcFileR)) {
+    sprintf(rcGenStr, "%d", rcGen);
+    printf("RC GEN: %s FILE: %s", test, rcFileRead); // TEMP FOR TESTING STRCMP
+    int compareRc = strcmp(rcGenStr, rcFileRead);
+    printf("\nCompare: %d", compareRc);
   }
 }
 
@@ -29,7 +34,7 @@ void generateRc() {
 	srand(time(0));
 	for (rC= 0; rC < 1; rC++) {
 		long int rcGen = (rand() % 1000000000) + 1;
-    printf("\nIn generate: %d", rcGen);
+    printf("RC GEN: \n%d", rcGen);
     checkRcNum(rcGen);
   }
 } 
@@ -49,7 +54,6 @@ void addStudent() {
   scanf("%s", &studentDob);
   printf("\nWould you like to submit this? (y/n) ");
   scanf(" %c", &submitData);
-  generateRc();
   int nameLen = strlen(studentFname);
   int lnameLen = strlen(studentLname);
   int dobLen = strlen(studentDob);
@@ -69,6 +73,7 @@ void addStudent() {
   else if (submitData == 'y') {
     FILE* students;
     students = fopen("studentDB.txt", "a");
+    generateRc();
     fprintf(students, "\n\nFIRST NAME: %s", studentFname);
     fprintf(students, "\nLAST NAME: %s", studentLname);
     fprintf(students, "\nD.O.B: %s", studentDob);
@@ -104,7 +109,7 @@ void getStudentCount() {
 }
 
 
-
+ 
 void smsMain() {
   int smsMainOption;
   getStudentCount();
@@ -128,6 +133,8 @@ int main() {
   smsMain();
 }
 
+
+// bug with writing last name to file. 
 
 // I need to make it so it compares the variable from file to ensure that the ROLECALL
 // Number isnt being reused as all students are required to have uniquely assigned Rolecall numbers. 
