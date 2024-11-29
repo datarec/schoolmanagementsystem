@@ -8,7 +8,7 @@
 
 
 int studentLineIterations = 0; 
-int test = 29501; 
+char test[3] = "763"; 
 
 void checkRcNum(int rcGen) {
   // add a search and use strcmp to compare with the generated one to 
@@ -19,18 +19,18 @@ void checkRcNum(int rcGen) {
   rcFileR = fopen("studentrcs.txt", "r");
   char rcFileRead[20];
   char rcGenStr[10];
-  sprintf(rcGenStr, "%d", test); // temp. REPLACE WITH RCGEN VAR.  
+  sprintf(rcGenStr, "%d", rcGen);   
   fprintf(rcFileA, "\n%s", rcGenStr);
   while (fgets(rcFileRead, 20, rcFileR)) {
     sprintf(rcGenStr, "%d", rcGen);
-    printf("RC GEN: %s FILE: %s", test, rcFileRead); // TEMP FOR TESTING STRCMP
-    int compareRc = strcmp(rcGenStr, rcFileRead);
+    printf("\nRC GEN: %s FILE: %s", test, rcFileRead); // replace with rcGenStr
+    int compareRc = strcmp(test, rcFileRead); // replace with rcGenStr
     printf("\nCompare: %d", compareRc);
   }
 }
 
 void generateRc() {
-  int rC;
+  int rC; 
 	srand(time(0));
 	for (rC= 0; rC < 1; rC++) {
 		long int rcGen = (rand() % 1000000000) + 1;
@@ -60,6 +60,10 @@ void addStudent() {
 
   if (nameLen > 20) {
     printf("\n[!] This first name exceeds the character limit of 20.");
+    exit(1);
+  }
+  else if (submitData == 'n') {
+    printf("\nGoodbye.");
     exit(1);
   }
   else if (lnameLen > 20) {
