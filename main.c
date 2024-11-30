@@ -14,14 +14,22 @@ char test[3] = "763";
 void checkRcNum(int rcGen) {
   FILE* rcFileA;
   FILE* rcFileR;  
-  rcFileA = fopen("studentrcs.txt", "a");
+  FILE* studentRc;
   rcFileR = fopen("studentrcs.txt", "r");
+  if (rcFileR == NULL) {
+    printf("\nFUCKK.");
+    rcFileA = fopen("studentrcs.txt", "a");
+    fprintf(rcFileA, "Student Rolecalls..\n");
+  }
+  rcFileA = fopen("studentrcs.txt", "a");
+  studentRc = fopen("studentDB.txt", "a");
   char rcFileRead[20];
   char rcGenStr[10];
+
   while (fgets(rcFileRead, 20, rcFileR)) {
     rcFileRead[strcspn(rcFileRead, "\n")] = 0;
     sprintf(rcGenStr, "%d", rcGen);
-    int compareRc = strcmp(rcGenStr, rcFileRead); // use test for debug strcmp
+    int compareRc = strcmp(rcGenStr, rcFileRead); 
     printf("\nreturnCode, %d", compareRc); // debug statement. 
     if (compareRc == 0) {
       printf("\nFatal error!");
@@ -30,7 +38,8 @@ void checkRcNum(int rcGen) {
     else {
       sprintf(rcGenStr, "%d", rcGen);   
       fprintf(rcFileA, "\n%s", rcGenStr);
-      exit(1);
+      fprintf(studentRc, "\n\n", rcGenStr);
+      break;
     }
   }
 }
@@ -84,7 +93,7 @@ void addStudent() {
     FILE* students;
     students = fopen("studentDB.txt", "a");
     generateRc();
-    fprintf(students, "\n\nFIRST NAME: %s", studentFname);
+    fprintf(students, "\nFIRST NAME: %s", studentFname);
     fprintf(students, "\nLAST NAME: %s", studentLname);
     fprintf(students, "\nD.O.B: %s", studentDob);
     printf("\n[!] Student successfully added! ");
