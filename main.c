@@ -10,31 +10,37 @@
 int studentLineIterations = 0; 
 char test[3] = "763"; 
 
+
 void checkRcNum(int rcGen) {
-  // add a search and use strcmp to compare with the generated one to 
-  // chgeck if it's been used already.
   FILE* rcFileA;
   FILE* rcFileR;  
   rcFileA = fopen("studentrcs.txt", "a");
   rcFileR = fopen("studentrcs.txt", "r");
   char rcFileRead[20];
   char rcGenStr[10];
-  sprintf(rcGenStr, "%d", rcGen);   
-  fprintf(rcFileA, "\n%s", rcGenStr);
   while (fgets(rcFileRead, 20, rcFileR)) {
+    rcFileRead[strcspn(rcFileRead, "\n")] = 0;
     sprintf(rcGenStr, "%d", rcGen);
-    printf("\nRC GEN: %s FILE: %s", test, rcFileRead); // replace with rcGenStr
-    int compareRc = strcmp(test, rcFileRead); // replace with rcGenStr
-    printf("\nCompare: %d", compareRc);
+    int compareRc = strcmp(rcGenStr, rcFileRead); // use test for debug strcmp
+    printf("\nreturnCode, %d", compareRc); // debug statement. 
+    if (compareRc == 0) {
+      printf("\nFatal error!");
+      exit(1);
+    }
+    else {
+      sprintf(rcGenStr, "%d", rcGen);   
+      fprintf(rcFileA, "\n%s", rcGenStr);
+      exit(1);
+    }
   }
 }
+
 
 void generateRc() {
   int rC; 
 	srand(time(0));
 	for (rC= 0; rC < 1; rC++) {
 		long int rcGen = (rand() % 1000000000) + 1;
-    printf("RC GEN: \n%d", rcGen);
     checkRcNum(rcGen);
   }
 } 
@@ -136,10 +142,3 @@ void smsMain() {
 int main() {
   smsMain();
 }
-
-
-// bug with writing last name to file. 
-
-// I need to make it so it compares the variable from file to ensure that the ROLECALL
-// Number isnt being reused as all students are required to have uniquely assigned Rolecall numbers. 
-// fix other stuff too .
