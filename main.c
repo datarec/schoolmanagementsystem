@@ -8,7 +8,7 @@
 
 
 int studentLineIterations = 0; 
-char test[3] = "763"; 
+char test[5] = "30728"; 
 
 
 void checkRcNum(int rcGen) {
@@ -17,29 +17,26 @@ void checkRcNum(int rcGen) {
   FILE* studentRc;
   rcFileR = fopen("studentrcs.txt", "r");
   if (rcFileR == NULL) {
-    printf("\nFUCKK.");
+    printf("\nPlease re-run the program.");
     rcFileA = fopen("studentrcs.txt", "a");
-    fprintf(rcFileA, "Student Rolecalls..\n");
+    fprintf(rcFileA, "1234\n");
+    fclose(rcFileA);
+    exit(1);
   }
   rcFileA = fopen("studentrcs.txt", "a");
   studentRc = fopen("studentDB.txt", "a");
-  char rcFileRead[20];
+  char rcFileRead[10];
   char rcGenStr[10];
 
-  while (fgets(rcFileRead, 20, rcFileR)) {
+  while (fgets(rcFileRead, 10, rcFileR)) {
     rcFileRead[strcspn(rcFileRead, "\n")] = 0;
     sprintf(rcGenStr, "%d", rcGen);
     int compareRc = strcmp(rcGenStr, rcFileRead); 
     printf("\nreturnCode, %d", compareRc); // debug statement. 
+    printf("\nRolecall: %s", rcFileRead); // debug statement. 
     if (compareRc == 0) {
       printf("\nFatal error!");
       exit(1);
-    }
-    else {
-      sprintf(rcGenStr, "%d", rcGen);   
-      fprintf(rcFileA, "\n%s", rcGenStr);
-      fprintf(studentRc, "\n\n", rcGenStr);
-      break;
     }
   }
 }
@@ -151,3 +148,12 @@ void smsMain() {
 int main() {
   smsMain();
 }
+
+
+// bug with writing last name to file. 
+
+// I need to make it so it compares the variable from file to ensure that the ROLECALL
+// Number isnt being reused as all students are required to have uniquely assigned Rolecall numbers. 
+// fix other stuff too .
+
+// ah forgot to strip the newline. Lol. 
