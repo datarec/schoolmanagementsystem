@@ -15,16 +15,16 @@ void checkRcNum(int rcGen) {
   FILE* rcFileA;
   FILE* rcFileR;  
   FILE* studentRc;
-  rcFileR = fopen("studentrcs.txt", "r");
+  rcFileR = fopen("studentRcs.txt", "r");
   if (rcFileR == NULL) {
     printf("\nPlease re-run the program.");
-    rcFileA = fopen("studentrcs.txt", "a");
+    rcFileA = fopen("studentRcs.txt", "a");
     fprintf(rcFileA, "1234\n");
     fclose(rcFileA);
     exit(1);
   }
-  rcFileA = fopen("studentrcs.txt", "a");
-  studentRc = fopen("studentDB.txt", "a");
+  rcFileA = fopen("studentRcs.txt", "a");
+  studentRc = fopen("studentDb.txt", "a");
   char rcFileRead[10];
   char rcGenStr[10];
 
@@ -32,15 +32,12 @@ void checkRcNum(int rcGen) {
     rcFileRead[strcspn(rcFileRead, "\n")] = 0;
     sprintf(rcGenStr, "%d", rcGen);
     int compareRc = strcmp(rcGenStr, rcFileRead); 
-    printf("\nreturnCode, %d", compareRc); // debug statement. 
-    printf("\nRolecall: %s", rcFileRead); // debug statement. 
     if (compareRc == 0) {
       printf("\nFatal error!");
       exit(1);
     }
   }
 }
-
 
 void generateRc() {
   int rC; 
@@ -54,20 +51,21 @@ void generateRc() {
 
 void addStudent() {
   char studentFname[20];
-  char studentLname[20];
+  char studentLastName[20];
   char studentDob[10];
   char submitData;
   printf("\nPlease enter the students information.\n\n");
   printf("First name (Name at birth) ");
-  scanf("%s", &studentFname);
-  printf("Student last name ");
-  scanf("%s", &studentLname);
+  scanf(" %s", &studentFname);
+  printf("Last name ");
+  scanf("%s", &studentLastName);
   printf("Student DOB (dd/mm/yyyy) ");
   scanf("%s", &studentDob);
   printf("\nWould you like to submit this? (y/n) ");
   scanf(" %c", &submitData);
+  printf("\ndValue of studentLastName: %s", studentLastName); // DEBUG STATEMENT
   int nameLen = strlen(studentFname);
-  int lnameLen = strlen(studentLname);
+  int lnameLen = strlen(studentLastName);
   int dobLen = strlen(studentDob);
 
   if (nameLen > 20) {
@@ -75,7 +73,8 @@ void addStudent() {
     exit(1);
   }
   else if (submitData == 'n') {
-    printf("\nGoodbye.");
+    printf("\nDATA DUMPED.");
+    printf("\nExiting...");
     exit(1);
   }
   else if (lnameLen > 20) {
@@ -88,10 +87,12 @@ void addStudent() {
   }
   else if (submitData == 'y') {
     FILE* students;
-    students = fopen("studentDB.txt", "a");
+    students = fopen("studentDb.txt", "a");
     generateRc();
+    printf("\nValue of LNAME: %s", studentLastName); // DEBUG STATEMENT 
+    printf("\nValue of FNAME: %s", studentFname); // DEBUG STATEMENT
     fprintf(students, "\nFIRST NAME: %s", studentFname);
-    fprintf(students, "\nLAST NAME: %s", studentLname);
+    fprintf(students, "\nLAST NAME: %s", studentLastName);
     fprintf(students, "\nD.O.B: %s", studentDob);
     printf("\n[!] Student successfully added! ");
     fclose(students);
@@ -117,7 +118,7 @@ void searchStudent() {
 
 void getStudentCount() {
   FILE* gsCount;
-  gsCount = fopen("studentDB.txt", "r");
+  gsCount = fopen("studentDb.txt", "r");
   char gsCountData[50];
   while (fgets(gsCountData, 50, gsCount)) {
     studentLineIterations++;
@@ -148,12 +149,3 @@ void smsMain() {
 int main() {
   smsMain();
 }
-
-
-// bug with writing last name to file. 
-
-// I need to make it so it compares the variable from file to ensure that the ROLECALL
-// Number isnt being reused as all students are required to have uniquely assigned Rolecall numbers. 
-// fix other stuff too .
-
-// ah forgot to strip the newline. Lol. 
