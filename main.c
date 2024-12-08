@@ -56,20 +56,31 @@ void addStudent() {
   char submitData;
   printf("\nPlease enter the students information.\n\n");
   printf("First name (Name at birth) ");
-  scanf(" %s", &studentFname);
+  scanf("%s", &studentFname);
   printf("Last name ");
   scanf("%s", &studentLastName);
+  // Stores data here but loses it after the next scanf takes data in
   printf("Student DOB (dd/mm/yyyy) ");
   scanf("%s", &studentDob);
+  printf("\nTEST: %s", studentLastName); //DEBUG
   printf("\nWould you like to submit this? (y/n) ");
-  scanf(" %c", &submitData);
-  printf("\ndValue of studentLastName: %s", studentLastName); // DEBUG STATEMENT
+  scanf("%c", &submitData);
+  // DEBUG STATEMENTS
+  printf("\n\nALL DATA");
+  printf("\n[!]fname: %s", studentFname);
+  printf("\n[!]lname: %s", studentLastName);
+  printf("\n[!]dob: %s\n\n", studentDob);
+  // END OF 
   int nameLen = strlen(studentFname);
   int lnameLen = strlen(studentLastName);
   int dobLen = strlen(studentDob);
 
   if (nameLen > 20) {
-    printf("\n[!] This first name exceeds the character limit of 20.");
+    printf("\n[!] This first name exceeds the character limit of 20. Please retry.");
+    exit(1);
+  }
+  else if (nameLen < 1) {
+    printf("\n[!] This first name is too shoot. Please retry.");
     exit(1);
   }
   else if (submitData == 'n') {
@@ -78,11 +89,15 @@ void addStudent() {
     exit(1);
   }
   else if (lnameLen > 20) {
-    printf("\n[!] The last name of student %s exceeds the maximum character limit of 20.", studentFname);
+    printf("\n[!] The last name of student %s exceeds the maximum character limit of 20. Please retry.", studentFname);
+    exit(1);
+  }
+  else if (lnameLen < 1) {
+    printf("\nThis last name cannot be shorter than 1 character. Please retry");
     exit(1);
   }
   else if (dobLen > 10 || dobLen < 10) {
-    printf("\n[!] Please ensure the date format is correct.");
+    printf("\n[!] Please ensure the date format is correct. Please retry.");
     exit(1);
   }
   else if (submitData == 'y') {
@@ -149,3 +164,6 @@ void smsMain() {
 int main() {
   smsMain();
 }
+
+
+// Last name is not writing to file, still haven't done the rolecall writing to file yet. 
