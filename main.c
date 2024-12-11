@@ -52,7 +52,7 @@ void generateRc() {
 void addStudent() {
   char studentFname[20];
   char studentLastName[20];
-  char studentDob[10];
+  char studentDob[11];
   char submitData;
   printf("\nPlease enter the students information.\n\n");
   printf("First name (Name at birth) ");
@@ -166,4 +166,4 @@ int main() {
 }
 
 
-// Last name is not writing to file, still haven't done the rolecall writing to file yet. 
+// make it so it checks if it has been run locally before. 
