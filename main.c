@@ -8,7 +8,7 @@
 
 
 int studentLineIterations = 0; 
-char test[5] = "30728"; 
+char test[5] = "7362"; 
 
 
 void checkRcNum(int rcGen) {
@@ -17,11 +17,10 @@ void checkRcNum(int rcGen) {
   FILE* studentRc;
   rcFileR = fopen("studentRcs.txt", "r");
   if (rcFileR == NULL) {
-    printf("\nPlease re-run the program.");
+    printf("\nInitializing..");
     rcFileA = fopen("studentRcs.txt", "a");
     fprintf(rcFileA, "1234\n");
-    fclose(rcFileA);
-    exit(1);
+    fclose(rcFileA); 
   }
   rcFileA = fopen("studentRcs.txt", "a");
   studentRc = fopen("studentDb.txt", "a");
@@ -37,6 +36,11 @@ void checkRcNum(int rcGen) {
       exit(1);
     }
   }
+  fprintf(rcFileA,"%s\n", rcGenStr);
+  fprintf(studentRc, "\nStudent RC Number: %s", rcGenStr);
+  fclose(rcFileA);
+  fclose(rcFileR);
+  fclose(studentRc);
 }
 
 void generateRc() {
@@ -59,18 +63,12 @@ void addStudent() {
   scanf("%s", &studentFname);
   printf("Last name ");
   scanf("%s", &studentLastName);
-  // Stores data here but loses it after the next scanf takes data in
   printf("Student DOB (dd/mm/yyyy) ");
   scanf("%s", &studentDob);
   printf("\nTEST: %s", studentLastName); //DEBUG
   printf("\nWould you like to submit this? (y/n) ");
-  scanf("%c", &submitData);
-  // DEBUG STATEMENTS
-  printf("\n\nALL DATA");
-  printf("\n[!]fname: %s", studentFname);
-  printf("\n[!]lname: %s", studentLastName);
-  printf("\n[!]dob: %s\n\n", studentDob);
-  // END OF 
+  scanf(" %c", &submitData);
+
   int nameLen = strlen(studentFname);
   int lnameLen = strlen(studentLastName);
   int dobLen = strlen(studentDob);
@@ -104,12 +102,10 @@ void addStudent() {
     FILE* students;
     students = fopen("studentDb.txt", "a");
     generateRc();
-    printf("\nValue of LNAME: %s", studentLastName); // DEBUG STATEMENT 
-    printf("\nValue of FNAME: %s", studentFname); // DEBUG STATEMENT
     fprintf(students, "\nFIRST NAME: %s", studentFname);
     fprintf(students, "\nLAST NAME: %s", studentLastName);
-    fprintf(students, "\nD.O.B: %s", studentDob);
-    printf("\n[!] Student successfully added! ");
+    fprintf(students, "\nD.O.B: %s\n", studentDob);
+    printf("\n[!] Student successfully added! \n");
     fclose(students);
   }
   else {
@@ -139,7 +135,6 @@ void getStudentCount() {
     studentLineIterations++;
   }
 }
-
 
  
 void smsMain() {
