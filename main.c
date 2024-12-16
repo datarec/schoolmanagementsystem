@@ -13,15 +13,9 @@ char test[5] = "7362";
 
 void checkRcNum(int rcGen) {
   FILE* rcFileA;
-  FILE* rcFileR;  
+  FILE* rcFileR;
   FILE* studentRc;
   rcFileR = fopen("studentRcs.txt", "r");
-  if (rcFileR == NULL) {
-    printf("\nInitializing..");
-    rcFileA = fopen("studentRcs.txt", "a");
-    fprintf(rcFileA, "1234\n");
-    fclose(rcFileA); 
-  }
   rcFileA = fopen("studentRcs.txt", "a");
   studentRc = fopen("studentDb.txt", "a");
   char rcFileRead[10];
@@ -155,9 +149,30 @@ void smsMain() {
   }
 }
 
+// check if file exists in driva code. xd
 
 int main() {
-  smsMain();
+  FILE* checkRcExist;
+  FILE* checkStudentDBExist;
+  checkRcExist = fopen("studentRcs.txt", "r");
+  checkStudentDBExist = fopen("studentDb.txt", "r");
+  if (checkRcExist == NULL && checkStudentDBExist == NULL) {
+    FILE* checkRcExistW;
+    FILE* checkStudentDBExistW;
+    checkRcExistW = fopen("studentRcs.txt", "a");
+    checkStudentDBExist = fopen("studentDb.txt", "a");
+    fprintf(checkRcExistW, "1234");
+    printf("\nInitializating...");
+    printf("\nPlease re-run the program.");
+    fclose(checkRcExist);
+    fclose(checkStudentDBExist);
+    fclose(checkRcExistW);
+    fclose(checkStudentDBExistW);
+    exit(1);
+  }
+  else {
+    smsMain();
+  }
 }
 
 
