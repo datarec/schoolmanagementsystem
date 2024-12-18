@@ -149,7 +149,6 @@ void smsMain() {
   }
 }
 
-// check if file exists in driva code. xd
 
 int main() {
   FILE* checkRcExist;
@@ -162,13 +161,7 @@ int main() {
     checkRcExistW = fopen("studentRcs.txt", "a");
     checkStudentDBExist = fopen("studentDb.txt", "a");
     fprintf(checkRcExistW, "1234");
-    printf("\nInitializating...");
-    printf("\nPlease re-run the program.");
-    fclose(checkRcExist);
-    fclose(checkStudentDBExist);
-    fclose(checkRcExistW);
-    fclose(checkStudentDBExistW);
-    exit(1);
+    smsMain();
   }
   else {
     smsMain();
