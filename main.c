@@ -161,12 +161,10 @@ int main() {
     checkRcExistW = fopen("studentRcs.txt", "a");
     checkStudentDBExist = fopen("studentDb.txt", "a");
     fprintf(checkRcExistW, "1234");
-    smsMain();
+    printf("[!] Initializing Database. please retry.\n[!] Complete!\n[!] Please retry.");
+    exit(1);
   }
   else {
     smsMain();
   }
 }
-
-
-// make it so it checks if it has been run locally before. 
