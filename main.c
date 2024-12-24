@@ -59,7 +59,6 @@ void addStudent() {
   scanf("%s", &studentLastName);
   printf("Student DOB (dd/mm/yyyy) ");
   scanf("%s", &studentDob);
-  printf("\nTEST: %s", studentLastName); //DEBUG
   printf("\nWould you like to submit this? (y/n) ");
   scanf(" %c", &submitData);
 
@@ -168,3 +167,6 @@ int main() {
     smsMain();
   }
 }
+
+
+// make it so it checks if it has been run locally before. 
