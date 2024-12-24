@@ -107,15 +107,30 @@ void addStudent() {
 }
 
 
+void searchRolecall() {
+  FILE* searchRolecall
+  printf("Enter rolecall no: ");
+  searchRolecall = fopen("")
+}
+
+
+void searchLastName() {
+  int pass;
+}
+
+
 void searchStudent() {
   int searchOption;
-  printf("Choose from the following; \n\n");
+  printf("\nChoose from the following; \n\n");
   printf("1) Search by Rolecall.");
   printf("\n2) Search by First Name\n");
   printf("\nSearch Option Selector (1,2) ");
   scanf("%d", &searchOption);
   if (searchOption == 1) {
-    printf("hio");
+    searchRolecall();
+  }
+  else if (searchOption == 2) {
+    searchLastName();
   }
 }
 
