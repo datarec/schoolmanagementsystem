@@ -1,6 +1,6 @@
 // school management system. 
 
-
+// yay
 
 // fix first student not going to the next line (goes on line 1234.)
 // fix search algorithm
