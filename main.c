@@ -1,9 +1,8 @@
 // school management system. 
 
-// yay
+
 
 // fix first student not going to the next line (goes on line 1234.)
-// fix search algorithm
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -117,19 +116,22 @@ void searchRolecall() {
   FILE* searchRolecall;
   char rcEntry[20];
   printf("\nEnter rolecall no: ");
-  scanf("%d", &rcEntry);
+  scanf("%s", &rcEntry);
+  printf("\nout of function %s", rcEntry);
   searchRolecall = fopen("studentRcs.txt", "r");
-  char rcs[10];
-  while (fgets(rcs, 10, searchRolecall)) {
+  char rcs[20];
+  while (fgets(rcs, 20, searchRolecall)) {
     rcs[strcspn(rcs, "\n")] = 0;
     printf("%s", rcs);
     int rcECompare = strcmp(rcEntry, rcs);
     if (rcECompare == 0) {
-      printf("\n\nYozaaa");
+      printf("\n\nYozaaa"); // DEBUG IF STATEMENT
+      exit(1);
     }
-    printf("\nRC-CHECK %d", rcECompare);
-    printf("\nrcitercount %d", rcitercount);
-    printf("\nRCS: %s", rcs);
+    printf("\n\nRC-CHECK %d", rcECompare); // DEBUG STATEMENT.
+    printf("\nrcitercount %d", rcitercount); // DEBUG STATEMENT.
+    printf("\nRC Entry: %s", rcEntry); // DEBUG STATEMENT. 
+    printf("\nRC No: %s", rcs); // DEBUG STATEMENT.
     rcitercount = rcitercount + 1;
   }
 }
