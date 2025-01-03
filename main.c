@@ -12,7 +12,7 @@
 
 
 int studentLineIterations = 0; 
-char test[5] = "7362"; 
+char test[5] = "7362"; // DEBUG STATEMENT
 
 
 void checkRcNum(int rcGen) {
@@ -197,7 +197,7 @@ int main() {
     FILE* checkStudentDBExistW;
     checkRcExistW = fopen("studentRcs.txt", "a");
     checkStudentDBExist = fopen("studentDb.txt", "a");
-    fprintf(checkRcExistW, "1234");
+    fprintf(checkRcExistW, "1234\n\n");
     printf("[!] Initializing Database. please retry.\n[!] Complete!\n[!] Please retry.");
     exit(1);
   }
