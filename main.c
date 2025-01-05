@@ -112,28 +112,30 @@ void addStudent() {
 
 int rcitercount = 0;
 
+void srRetrieveData() {
+  printf("\n\nLine count from in %d", rcitercount); // DEBUG STATEMENT
+}
+
+
 void searchRolecall() {
   FILE* searchRolecall;
-  char rcEntry[20];
+  char rcEntry[200];
   printf("\nEnter rolecall no: ");
   scanf("%s", &rcEntry);
-  printf("\nout of function %s", rcEntry);
   searchRolecall = fopen("studentRcs.txt", "r");
-  char rcs[20];
-  while (fgets(rcs, 20, searchRolecall)) {
+  char rcs[200];
+  while (fgets(rcs, 200, searchRolecall)) {
     rcs[strcspn(rcs, "\n")] = 0;
-    printf("%s", rcs);
     int rcECompare = strcmp(rcEntry, rcs);
     if (rcECompare == 0) {
-      printf("\n\nYozaaa"); // DEBUG IF STATEMENT
+      printf("\nRC MATCHED!");
+      printf("\nLine number is: %d", rcitercount); // DEBUG STATEMENT
+      srRetrieveData();
       exit(1);
     }
-    printf("\n\nRC-CHECK %d", rcECompare); // DEBUG STATEMENT.
-    printf("\nrcitercount %d", rcitercount); // DEBUG STATEMENT.
-    printf("\nRC Entry: %s", rcEntry); // DEBUG STATEMENT. 
-    printf("\nRC No: %s", rcs); // DEBUG STATEMENT.
     rcitercount = rcitercount + 1;
   }
+  printf("No match found.");
 }
 
 
@@ -197,7 +199,7 @@ int main() {
     FILE* checkStudentDBExistW;
     checkRcExistW = fopen("studentRcs.txt", "a");
     checkStudentDBExist = fopen("studentDb.txt", "a");
-    fprintf(checkRcExistW, "1234\n\n");
+    fprintf(checkRcExistW, "1\n");
     printf("[!] Initializing Database. please retry.\n[!] Complete!\n[!] Please retry.");
     exit(1);
   }
@@ -205,4 +207,3 @@ int main() {
     smsMain();
   }
 }
-
