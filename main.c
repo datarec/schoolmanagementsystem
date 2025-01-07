@@ -113,7 +113,27 @@ void addStudent() {
 int rcitercount = 0;
 
 void srRetrieveData() {
-  printf("\n\nLine count from in %d", rcitercount); // DEBUG STATEMENT
+  // we know it saves and is accessible to this function
+  FILE* retrieveContents;
+  int retrieveDataCounter = 0;
+  int retrieveDataTrueCounter = 0;
+  retrieveContents = fopen("studentDb.txt", "r");
+  char rContent[50];
+  while (fgets(rContent, 50, retrieveContents)) {
+    rContent[strcspn(rContent, "\n")] = 0;
+    //printf("\n%s", rContent); // DEBUG STATEMENTS
+    //printf("\n%d", retrieveDataCounter); // DEBUG STATEMENTS
+    if (retrieveDataCounter == 4) {
+      retrieveDataTrueCounter++;
+      retrieveDataCounter = 0;
+      continue;
+    }
+    else if (retrieveDataTrueCounter == rcitercount) {
+      printf("%s ", rContent); // DEBUG
+    }
+    retrieveDataCounter++;
+
+  }
 }
 
 
