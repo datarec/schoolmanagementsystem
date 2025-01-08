@@ -123,13 +123,13 @@ void srRetrieveData() {
     rContent[strcspn(rContent, "\n")] = 0;
     //printf("\n%s", rContent); // DEBUG STATEMENTS
     //printf("\n%d", retrieveDataCounter); // DEBUG STATEMENTS
-    if (retrieveDataCounter == 4) {
+    if (retrieveDataCounter == 5) {
       retrieveDataTrueCounter++;
       retrieveDataCounter = 0;
       continue;
     }
     else if (retrieveDataTrueCounter == rcitercount) {
-      printf("%s ", rContent); // DEBUG
+      printf("\n%s ", rContent); // DEBUG
     }
     retrieveDataCounter++;
 
