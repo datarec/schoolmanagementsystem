@@ -1,9 +1,3 @@
-// school management system. 
-
-
-
-// fix first student not going to the next line (goes on line 1234.)
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -113,7 +107,6 @@ void addStudent() {
 int rcitercount = 0;
 
 void srRetrieveData() {
-  // we know it saves and is accessible to this function
   FILE* retrieveContents;
   int retrieveDataCounter = 0;
   int retrieveDataTrueCounter = 0;
@@ -121,19 +114,17 @@ void srRetrieveData() {
   char rContent[50];
   while (fgets(rContent, 50, retrieveContents)) {
     rContent[strcspn(rContent, "\n")] = 0;
-    //printf("\n%s", rContent); // DEBUG STATEMENTS
-    //printf("\n%d", retrieveDataCounter); // DEBUG STATEMENTS
     if (retrieveDataCounter == 5) {
       retrieveDataTrueCounter++;
       retrieveDataCounter = 0;
       continue;
     }
-    else if (retrieveDataTrueCounter == rcitercount) {
-      printf("\n%s ", rContent); // DEBUG
+    else if ((retrieveDataTrueCounter + 1) == rcitercount) {
+      printf("\n%s", rContent); 
     }
     retrieveDataCounter++;
-
   }
+  printf("\n");
 }
 
 
@@ -148,8 +139,7 @@ void searchRolecall() {
     rcs[strcspn(rcs, "\n")] = 0;
     int rcECompare = strcmp(rcEntry, rcs);
     if (rcECompare == 0) {
-      printf("\nRC MATCHED!");
-      printf("\nLine number is: %d", rcitercount); // DEBUG STATEMENT
+      printf("\nStudent found!\n");
       srRetrieveData();
       exit(1);
     }
