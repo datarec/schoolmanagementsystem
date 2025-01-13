@@ -1,3 +1,9 @@
+// school management system. 
+
+
+
+// fix first student not going to the next line (goes on line 1234.)
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -154,22 +160,6 @@ void searchLastName() {
 }
 
 
-void searchStudent() {
-  int searchOption;
-  printf("\nChoose from the following; \n\n");
-  printf("1) Search by Rolecall.");
-  printf("\n2) Search by First Name\n");
-  printf("\nSearch Option Selector (1,2) ");
-  scanf("%d", &searchOption);
-  if (searchOption == 1) {
-    searchRolecall();
-  }
-  else if (searchOption == 2) {
-    searchLastName();
-  }
-}
-
-
 void getStudentCount() {
   FILE* gsCount;
   gsCount = fopen("studentDb.txt", "r");
@@ -187,14 +177,14 @@ void smsMain() {
   printf("\nSchool Student Management System (SSMS)");
   printf("\nStudents enrolled: %d", studentCount);
   printf("\n\n1) Add a student");
-  printf("\n2) Search student (ADD MORE OPTIONS. using role-call number)");
+  printf("\n2) Search student");
   printf("\n\n>> ");
   scanf("%d", &smsMainOption); 
   if (smsMainOption == 1) {
     addStudent();
   } 
   else if (smsMainOption == 2) {
-    searchStudent();
+    searchRolecall();
   }
 }
 
